@@ -6,10 +6,91 @@
         <title>Page Title</title>
     </head>
     <body>
+        <h1>Workshop #HTML - FORM</h1>
+        <form>
+            <table>
+                <tr>
+                    <td><label for="name">ชื่อ</label></td>
+                    <td><input type="text" id="name" name="name"></td>
+                
+                </tr>
+                <td></td>
 
-        <h1>This is a Heading</h1>
-        <p>This is a paragraph.</p>
-        <p>ภาษาไทยจ้า</p>
+                <tr>
+                    <td><label for="surname">สกุล</label></td>
+                    <td><input type="text" id="surname" name="surname"></td>
+                </tr>
+                <td></td>
 
+                <tr>
+                    <td><label for="dateofbirth">วัน/เดือน/ปีเกิด</label></td>
+                    <td><input type="date" id="dateofbirth" name="dateofbirth"></td>
+                </tr>
+                <td></td>
+
+                <tr>
+                    <td><label for="age">อายุ</label></td>
+                    <td><input type="number" id="age" name="age" min="0"></td>
+                </tr>
+                <td></td>
+            
+                <tr>
+                    <td><label>เพศ:</label></td>
+                    <td>
+                        <input type="radio" id="male" name="gender" value="ชาย">
+                        <label for="male">ชาย</label>
+                        <input type="radio" id="female" name="gender" value="หญิง">
+                        <label for="female">หญิง</label>
+                    </td>
+                </tr>
+                <td></td>
+
+                <tr>
+                    <td><label for="photo">รูป:</label></td>
+                    <td><input type="file" id="photo" name="photo"></td>
+                </tr>
+                <td></td>
+
+                <tr>
+                    <td style="vertical-align: middle;"><label for="address">ที่อยู่</label></td>
+                    <td><textarea id="address" name="address" rows="6" cols="25"></textarea></td>
+                </tr>
+                <td></td>
+
+                <tr>
+                    <td><label for="color">สีที่ชอบ</label></td>
+                    <td>
+                        <select id="color" name="color">
+                            <option value="แดง">แดง</option>
+                            <option value="น้ำเงิน">น้ำเงิน</option>
+                            <option value="เขียว">เขียว</option>
+                            <option value="เหลือง">เหลือง</option>    
+                        </select>
+                    </td>
+                </tr>
+                <td></td>
+
+                <tr>
+                    <td><label>แนวเพลงที่ชอบ</label></td>
+                    <td>
+                        <input type="radio" id="lifeSong" name="music_genre" value="เพื่อชีวิต">
+                        <label for="lifeSong">เพื่อชีวิต</label>
+                        <input type="radio" id="country" name="music_genre" value="ลูกทุ่ง">
+                        <label for="country">ลูกทุ่ง</label>
+                        <input type="radio" id="others" name="music_genre" value="อื่นๆ">
+                        <label for="others">อื่นๆ</label>
+                    </td>
+                </tr>
+
+            </table>
+            <br>
+            <input type="checkbox" id="consent" name="consent">
+            <label for="consent">ยินยอมให้เก็บข้อมูล</label>
+            <br><br>
+            <br>
+            <button type="reset">Reset</button>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="submit">Submit</button>
+
+        </form>
     </body>
 </html>
