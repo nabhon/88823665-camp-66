@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@700&family=Anuphan&display=swap');
+
+
+body{
+    background-image: url(background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="radio"],
+input[type="file"]
+textarea {
+    font-family: "Anuphan", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+textarea{
+    font-family: "Anuphan", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.tableForm{
+    margin: auto;
+    display: block;
+    margin-top: 40px;
+    place-items: center;
+    border-style: solid;
+    background-color: rgba(177, 104, 245, 0.068);
+    width: 600px;
+    border-width: 0px;
+    border-color: rgba(99, 63, 119, 0.801);
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    font-family: "Anuphan", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.webTitle{
+    text-align: center;
+    margin: auto;
+    margin-top: 3%;
+    width: 400px;
+    background-color: rgba(177, 104, 245, 0.068);
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(99, 63, 119, 0.801);
+    border-radius: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+    font-family: "Afacad Flux", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0;
+    font-size: 45px;    
+}
+
+.name:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.name:focus{
+    background-color: rgba(99, 82, 109, 0.863);
+    color: white;
+}
+
+.surname:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.surname:focus{
+    background-color: rgba(99, 82, 109, 0.863);
+    color: white;
+}
+
+.dateofbirth:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.dateofbirth:focus{
+    background-color: rgba(99, 82, 109, 0.863);
+    color: white;
+}
+
+.age:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.age:focus{
+    background-color: rgba(99, 82, 109, 0.863);
+    color: white;
+}
+
+.address:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.address:focus{
+    background-color: rgba(99, 82, 109, 0.863);
+    color: white;
+}
+
+.color:hover{
+    background-color: rgba(215, 186, 231, 0.356);
+}
+
+.handSome{
+    accent-color: rgba(99, 82, 109, 0.863);
+}
+
+.resetBtn{
+    background-color: white;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-style: solid;
+    border: 0px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.resetBtn:hover{
+    background-color: red;
+    color: white;
+}
+
+.submitBtn{
+    background-color: white;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-style: solid;
+    border: 0px;
+    border-radius: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.submitBtn:hover{
+    background-color: rgb(91, 207, 91);
+    color: white;
+}
+
+
