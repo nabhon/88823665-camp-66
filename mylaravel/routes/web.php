@@ -3,16 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/hello', function () {
     return "<h1>Hello World!</h1>";
-});
-
-Route::get('/multi', function () {
-    return view('php3');
 });
 
 Route::get("/mycontroller/{id?}", 
@@ -20,3 +12,7 @@ Route::get("/mycontroller/{id?}",
 
 Route::post("/mycontroller/{id?}", 
     [MyController::class, 'myfunction']);
+
+Route::get('/', function() {
+    return view('layouts.default');
+});
