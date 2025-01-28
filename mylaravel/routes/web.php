@@ -9,11 +9,17 @@ use App\Http\Controllers\HomeController;
 Route::get('/home',
     [HomeController::class, 'home']);
 
+Route::get('/',
+    [HomeController::class, 'home']);    
+
 Route::get('/login',
     [LoginController::class, 'index']);
 
-Route::get('register' ,
+Route::get('/register' ,
     [RegisterController::class, 'register']); 
+
+Route::post('/register' ,
+    [RegisterController::class, 'create']); 
 
 Route::get('/hello', function () {
     return "<h1>Hello World!</h1>";
@@ -24,7 +30,3 @@ Route::get("/mycontroller/{id?}",
 
 Route::post("/mycontroller/{id?}", 
     [MyController::class, 'myfunction']);
-
-Route::get('/', function() {
-    return view('home');
-});
