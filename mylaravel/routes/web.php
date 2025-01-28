@@ -26,5 +26,5 @@ Route::post("/mycontroller/{id?}",
     [MyController::class, 'myfunction']);
 
 Route::get('/', function() {
-    return view('layouts.default');
+    return view('home');
 });
