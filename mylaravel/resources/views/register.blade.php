@@ -4,7 +4,7 @@
 <body class="register-page bg-body-secondary">
     <div class="register-box">
       <div class="register-logo">
-        <a href="../index2.html"><b>Admin</b>LTE</a>
+        <a href="../index2.html"><b>Register</b></a>
       </div>
       <!-- /.register-logo -->
       <div class="card">
