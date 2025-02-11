@@ -49,7 +49,7 @@
                                 <a href="{{ url('/user/'.$user->id) }}">
                                 <button class="btn btn-warning">Edit</button>
                                 </a>
-                                <form action="{{ url('/user') }}" method="post" style="display:inline">
+                                <form action="{{ url('/user') }}" method="post" onsubmit = "return clickme(event)" style="display:inline">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="id" value="{{$user->id}}">
@@ -137,6 +137,30 @@
         }
       });
     </script>
+    @section('scripts')
+    <script>
+   
+        
+  function clickme(event) {
+    event.preventDefault(); 
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        event.target.submit(); 
+      }
+    });
+    return false; 
+  }
+    </script>
+    @endsection
     <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
   </body>
