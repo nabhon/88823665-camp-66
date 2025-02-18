@@ -1,10 +1,12 @@
 @extends('layouts.default')
-
-@section('content')
+<!--end::Head-->
+<!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-   <!--begin::Header-->
-   <nav class="app-header navbar navbar-expand bg-body">
+    <!--begin::App Wrapper-->
+    <div class="app-wrapper">
+        <!--begin::Header-->
+        <nav class="app-header navbar navbar-expand bg-body">
             <!--begin::Container-->
             <div class="container-fluid">
                 <!--begin::Start Navbar Links-->
@@ -186,149 +188,152 @@
             <!--end::Container-->
         </nav>
         <!--end::Header-->
-      <!--begin::App Main-->
-      <main class="app-main">
-        <!--begin::App Content Header-->
-        <div class="app-content-header">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0"></h3></div>
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item active" aria-current="page">Users Tables</li>
-                </ol>
-              </div>
-            </div>
-            <!--end::Row-->
-          </div>
-          <!--end::Container-->
-        </div>
-        <div class="app-content">
-          <!--begin::Container-->
-          <div class="container-fluid">
-            <!--begin::Row-->
-            <div class="row">
-              <div class="col-md-12">
-                <div class="card mb-4">
-                  <div class="card-header"><h3 class="card-title">Users Table</h3></div>
-                  <!-- /.card-header -->
-                  <div class="card-body">
-                    <table class="table table-bordered">
-                        <tr>
-                            <th style="width: 50;text-align:center">#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th style="width: 800px"></th>
-                        </tr>
-                        <?php foreach($users as $index => $user ){?>
-                        <tr class="align-middle">
-                            <td style="text-align:center">{{ $index + 1 }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                <a href="{{ url('/user/'.$user->id) }}">
-                                <button class="btn btn-warning">Edit</button>
-                                </a>
-                                <form action="{{ url('/user') }}" method="post" onsubmit = "return clickme(event)" style="display:inline">
-                                    @csrf
-                                    @method('delete')
-                                    <input type="hidden" name="id" value="{{$user->id}}">
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php } ?>
+        <!--begin::App Main-->
+        <main class="app-main">
+            <!--begin::App Content Header-->
+            <div class="app-content-header">
+                <!--begin::Container-->
+                <div class="container-fluid">
+                    <!--begin::Row-->
+                    <form action="{{ url('product') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Category Name</label>
+                                    <input type="text" name="category" class="form-control" id="category">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" id="btn-add-product" class="btn btn-primary">
+                            + เพิ่ม product
+                        </button>
+                        <div class="row" id='add-product'>
+
+                        </div>
+                        <div class="mt-3 row">
+                            <button class="btn btn-success" type="submit">บันทึก</button>
+                        </div>
+                    </form>
+                    <table class="mt-3 table">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Category Name</td>
+                                <td>Product Name</td>
+                                <td>User </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php foreach ($categorys as $index => $category) {?>
+                            <tr>
+                                <td>{{$index + 1}}</td>
+                                <td>{{$category->name}}</td>
+                                <td>
+                                <?php    foreach ($products->where('category_id', $category->id) as $product) { 
+                                    $name  = $user->where('id',$product->user_id)->first();
+                                    ?>
+                                    <ul>
+                                        <li>{{$product->name}}</li>
+                                    </ul>
+                                    <?php } ?>
+                                </td>
+                                <td>{{$name->name}}</td>
+                            </tr>
+                            <?php }?>
+                        </tbody>
                     </table>
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer clearfix">
-                    <ul class="pagination pagination-sm m-0 float-end">
-                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
+
+                    @section('scripts')
+                        <script>
+                            $(document).ready(function () {
+                                var count = 1;
+                                $('#btn-add-product').on('click', function () {
+                                    $("#add-product").append(`
+                                            <div class="mt-3 col-6">
+                                                <label class="form-label product-label">${count++}. Product Name
+                                                    <button type="button" class="btn btn-danger btn-delete-product">ลบ</button>
+                                                </label>
+                                                    <input type="text" name="product_name[]" class="form-control">
+                                            </div>
+                                            `)
+                                })
+
+                                $(document).on('click', '.btn-delete-product', function () {
+                                    // count--; 
+                                    $(this).parent().parent().remove();
+                                })
+                            });
+                        </script>
+                    @endsection
+                    <!--end::Row-->
                 </div>
+                <!--end::Container-->
+            </div>
+            <!--end::App Content Header-->
+            <!--begin::App Content-->
+            <div class="app-content">
+                <!--begin::Container-->
+                <div class="container-fluid">
+                    <!--begin::Row-->
+
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
             <!--end::Row-->
-          </div>
-          <!--end::Container-->
-        </div>
-        <!--end::App Content-->
-      </main>
-      <!--end::App Main-->
+    </div>
+    <!--end::Container-->
+    </div>
+    <!--end::App Content-->
+    </main>
+    <!--end::App Main-->
     </div>
     <!--end::App Wrapper-->
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
-      integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ="
-      crossorigin="anonymous"
-    ></script>
+    @section('scripts')
+
+        <script>
+
+
+            function clickme(event) {
+                event.preventDefault();
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        event.target.submit();
+                    }
+                });
+
+                return false;
+            }
+
+
+        </script>
+    @endsection
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.10.1/browser/overlayscrollbars.browser.es6.min.js"
+        integrity="sha256-dghWARbRe2eLlIJ56wNB+b760ywulqK3DzZYEpsg2fQ=" crossorigin="anonymous"></script>
     <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-      integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="../../../dist/js/adminlte.js"></script>
     <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
-    <script>
-      const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
-      const Default = {
-        scrollbarTheme: 'os-theme-light',
-        scrollbarAutoHide: 'leave',
-        scrollbarClickScroll: true,
-      };
-      document.addEventListener('DOMContentLoaded', function () {
-        const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-        if (sidebarWrapper && typeof OverlayScrollbarsGlobal?.OverlayScrollbars !== 'undefined') {
-          OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-            scrollbars: {
-              theme: Default.scrollbarTheme,
-              autoHide: Default.scrollbarAutoHide,
-              clickScroll: Default.scrollbarClickScroll,
-            },
-          });
-        }
-      });
-    </script>
-    @section('scripts')
-    <script>
-   
-        
-  function clickme(event) {
-    event.preventDefault(); 
-
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        event.target.submit(); 
-      }
-    });
-    return false; 
-  }
-    </script>
-    @endsection
-    <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
-  </body>
+</body>
+<!--end::Body-->
